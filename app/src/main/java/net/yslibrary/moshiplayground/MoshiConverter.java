@@ -14,7 +14,6 @@ import retrofit.converter.ConversionException;
 import retrofit.converter.Converter;
 import retrofit.mime.TypedInput;
 import retrofit.mime.TypedOutput;
-import timber.log.Timber;
 
 /**
  * Created by shimizu_yasuhiro on 15/06/17.
@@ -80,8 +79,6 @@ public class MoshiConverter implements Converter {
 
         JsonAdapter adapter = moshi.adapter(clazz);
         try {
-            String result = adapter.toJson(object);
-            Timber.d("result:%s", result);
             return new JsonTypedOutput(adapter.toJson(object).getBytes(charset), charset);
         } catch (IOException e) {
             throw new AssertionError(e);
